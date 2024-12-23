@@ -1,0 +1,18 @@
+---
+# config
+
+common:
+  data_type : one-class-niid-majority #data_type = data distribution one among ['iid','one-class-niid','one-class-niid-majority','two-class-niid']
+  dataset : fashionmnist #data_set = data set used  one among [fashionmnist,mnist]
+  target_acc : 0.85
+
+server:
+  max_rounds : 500
+  address : 127.0.0.1
+  min_fit_clients: 10
+  min_avalaible_clients : 20
+  strategy : fedhpo #Strategy : choices=['fedhpo','fedavg', 'fedyogi', 'fedadagrad', 'fedavgm','fedprox']
+
+client:
+  epochs : 11
+  batch_size : 32
