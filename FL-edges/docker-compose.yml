@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  flwr-server:
+    build:
+      context: ./server_code
+      dockerfile: Dockerfile.server
+    ports:
+      - "8080:8080"
+    environment:
+      - FLWR_SERVER_ADDRESS=0.0.0.0:8080
+    networks:
+      - flwr-net
+
+  flwr-client:
+    build:
+      context: ./client_code
+      dockerfile: Dockerfile.client
+    # 클라이언트 여러 개라면 복제하거나 scale 가능
+    environment:
+      - SERVER_ADDRESS=flwr-server:8080
+      - CLIENT_ID=client-edge-1
+    networks:
+      - flwr-net
+
+networks:
+  flwr-net:
+    driver: bridge

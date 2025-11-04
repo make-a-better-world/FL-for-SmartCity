@@ -1,0 +1,21 @@
+# 베이스 이미지 (Jetson 등 ARM64 아키텍처 고려)
+FROM python:3.10-slim-buster
+
+WORKDIR /app
+
+# 클라이언트 의존성 설치
+RUN pip install --no-cache-dir \
+    flwr==1.23.0 \
+    torch torchvision \
+    # 여기에 필요하다면 slowfast-관련 라이브러리 추가 \
+    && pip cache purge
+
+# 클라이언트 코드 복사
+COPY . /app
+
+# 환경변수 설정 .. Change this part before running
+ENV SERVER_ADDRESS="YOUR_SERVER_IP:8080" 
+ENV CLIENT_ID="client-edge-1"
+
+# 실행 커맨드
+CMD ["python", "client_app.py", "--server-address", "${SERVER_ADDRESS}", "--cid", "${CLIENT_ID}"]
