@@ -1,0 +1,16 @@
+# client_config.yml
+client:
+  id: "edge_device_01"       # 클라이언트 식별자
+  server_address: "your.server.ip:8080"
+training:
+  local_epochs: 5           # 각 클라이언트가 로컬에서 학습할 epoch 수
+  batch_size: 32            # 배치 사이즈
+  learning_rate: 0.001      # 학습률
+  dataset_path: "./data"    # 클라이언트 측 데이터셋 위치
+  use_gpu: true             # GPU 사용 여부
+logging:
+  level: "DEBUG"
+  output_path: "./logs/client.log"
+resources:
+  max_memory_gb: 8          # 메모리 최대 허용량(예: Jetson 기기 고려)
+  gpu_id: 0                 # 사용할 GPU ID

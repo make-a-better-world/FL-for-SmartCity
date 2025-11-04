@@ -1,0 +1,18 @@
+# server_config.yml
+server:
+  address: "0.0.0.0:8080"
+  strategy:
+    name: "FedAvg"           # 연합학습 전략 이름
+    fraction_fit: 0.5        # 학습에 참여할 클라이언트 비율
+    min_available_clients: 2 # 최소 참여 클라이언트 수
+    rounds: 100              # 전체 라운드 수
+    evaluate_every: 1        # 평가 주기(라운드 단위)
+  logging:
+    level: "INFO"
+    output_path: "./logs/server.log"
+database:
+  path: "./state/server_state.db"
+security:
+  tls: false                 # TLS 사용 여부
+  certfile: ""               # TLS 인증서 경로 (사용 시)
+  keyfile: ""                # TLS 키파일 경로 (사용 시)
